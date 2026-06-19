@@ -61,6 +61,7 @@ BOARD_MKBOOTIMG_ARGS     := --kernel_offset 0x00008000 --ramdisk_offset 0x010000
 
 # TWRP settings
 TW_THEME                     := portrait_mdpi
+TW_CUSTOM_THEME              := $(LOCAL_PATH)/theme_ldpi
 TW_NO_EXFAT                  := true
 TW_NO_CPU_TEMP               := true
 TW_NO_USB_STORAGE            := true
