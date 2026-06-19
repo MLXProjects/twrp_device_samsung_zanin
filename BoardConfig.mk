@@ -1,0 +1,72 @@
+#
+# Copyright (C) 2022 TeamWin Recovery Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+LOCAL_PATH := device/samsung/zanin
+
+# Platform
+TARGET_ARCH                  := arm
+TARGET_BOARD_PLATFORM        := rhea
+TARGET_CPU_ABI               := armeabi-v7a
+TARGET_CPU_ABI2              := armeabi
+TARGET_ARCH_VARIANT          := armv7-a-neon
+TARGET_CPU_VARIANT           := cortex-a9
+TARGET_BOOTLOADER_BOARD_NAME := rhea
+BOARD_VENDOR                 := samsung
+
+# Bootloader
+TW_HAS_DOWNLOAD_MODE    := true
+TW_NO_REBOOT_BOOTLOADER := true
+
+# Model checks
+TARGET_OTA_ASSERT_DEVICE := zanin,zaninchn,GT-B5330,GT-B5330L,rhea
+
+# Filesystem
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 8388608 # 8MB
+BOARD_FLASH_BLOCK_SIZE             := 512
+TARGET_USERIMAGES_USE_EXT4         := true
+BOARD_USES_MMCUTILS                := true
+BOARD_SUPPRESS_EMMC_WIPE           := true
+BOARD_SUPPRESS_SECURE_ERASE        := true
+BOARD_HAS_NO_REAL_SDCARD           := true
+RECOVERY_SDCARD_ON_DATA            := true
+BOARD_HAS_NO_MISC_PARTITION        := true
+
+# SELinux
+POLICYVERS          := 23 # needed by AOSP versions 7.1 and older
+BOARD_SEPOLICY_VERS := 23.0
+
+# Kernel
+TARGET_PREBUILT_KERNEL   := $(LOCAL_PATH)/prebuilt/zImage
+BOARD_KERNEL_CMDLINE     := console=ttyS0,115200n8 mem=456M gpt v3d_mem=67108864 pmem=24M@0x9E800000
+BOARD_KERNEL_BASE        := 0x00000000
+BOARD_KERNEL_OFFSET      := 0x00008000
+BOARD_KERNEL_TAGS_OFFSET := 0x00000100
+BOARD_KERNEL_PAGESIZE    := 4096
+BOARD_RAMDISK_OFFSET     := 0x01000000
+BOARD_MKBOOTIMG_ARGS     := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100
+
+
+# TWRP settings
+TW_THEME                     := portrait_mdpi
+TW_NO_EXFAT                  := true
+TW_NO_CPU_TEMP               := true
+TW_NO_USB_STORAGE            := true
+TW_EXCLUDE_SUPERSU           := true
+TW_EXCLUDE_TZDATA            := true
+TW_EXCLUDE_NANO              := true
+TW_EXCLUDE_BASH              := true
+TW_EXCLUDE_PYTHON            := true
+TW_EXCLUDE_ENCRYPTED_BACKUPS := true
